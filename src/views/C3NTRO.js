@@ -1,0 +1,78 @@
+import React from "react";
+// javascript library that creates a parrallax effect
+import Rellax from "rellax";
+// reactstrap components
+
+// core components
+import ScrollTransparentNavbar from "components/Navbars/ScrollTransparentNavbar.js";
+import PresentationHeader from "components/Headers/PresentationHeader.js";
+import FooterBlack from "components/Footers/FooterBlack.js"
+
+
+// sections for this page
+import Components from "./presentation-sections/Components.js";
+import BasicComponents from "./presentation-sections/BasicComponents.js";
+import Cards from "./presentation-sections/Cards.js";
+import Content from "./presentation-sections/Content.js";
+import Sections from "./presentation-sections/Sections.js";
+import Examples from "./presentation-sections/Examples.js";
+import FreeDemo from "./presentation-sections/FreeDemo.js";
+import Icons from "./presentation-sections/Icons.js";
+import Image from "./presentation-sections/Image.js";
+import Testimonials from "./presentation-sections/Testimonials.js";
+import Pricing from "./presentation-sections/Pricing.js";
+import FooterBlackSocial from "components/Footers/FooterBlackSocial.js";
+import HeaderC3NTRO from "./sections-sections/HeaderC3NTRO.js";
+import ComponentsC3NTRO from "./presentation-sections/ComponentsC3NTRO.js";
+import MiddleC3NTRO from "./sections-sections/MiddleC3NTRO.js";
+import CardsC3NTRO from "./presentation-sections/CardsC3NTRO.js"
+
+
+function C3NTRO() {
+  React.useEffect(() => {
+    document.body.classList.add("presentation-page");
+    document.body.classList.add("sidebar-collapse");
+    document.documentElement.classList.remove("nav-open");
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+
+    // initialise Rellax for this page
+    if (window.innerWidth >= 991) {
+      setTimeout(function () {
+        new Rellax(".rellax", {
+          center: true,
+        });
+      }, 5000);
+      new Rellax(".rellax-header");
+      new Rellax(".rellax-text");
+    }
+
+    // we need to add a script for the github buttons
+    let script = document.createElement("script");
+    script.src = "https://buttons.github.io/buttons.js";
+    script.id = "github-buttons-script-id";
+    document.body.appendChild(script);
+
+    return function cleanup() {
+      document.body.classList.remove("presentation-page");
+      document.body.classList.remove("sidebar-collapse");
+
+      // we need to remove the script when we change the page
+      script.parentNode.removeChild(script);
+    };
+  });
+  return (
+    <>
+      <ScrollTransparentNavbar />
+      <div className="wrapper">
+        <HeaderC3NTRO />
+        <ComponentsC3NTRO />
+        <MiddleC3NTRO />
+        <CardsC3NTRO />
+        <FooterBlackSocial />
+      </div>
+    </>
+  );
+}
+
+export default C3NTRO;
